@@ -1,0 +1,227 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language_bidi as LANGUAGE_BIDI %} 
+{% get_current_language as CURRENT_LANGUAGE %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<!DOCTYPE html>
+
+<!--<html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" >-->
+
+<html lang="{{LANGUAGE_CODE}}" dir = {% if LANGUAGE_CODE == 'ar' %}"rtl" {% else %}"ltr" {% endif %} >
+
+<head>
+  {% for header in headers %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{{header.title}}</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  {%if header.icon %} <link href="{{header.icon.url}}" rel="icon"> {%endif%} 
+  {%if header.appl %} <link href="{{header.appl.url}}" rel="apple-touch-icon"> {%endif%} 
+  
+  {% endfor %}
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style1.css' %}" rel="stylesheet">
+  {% get_current_language as LANGUAGE_CODE %}
+   <style>
+
+
+   body{
+     {%if LANGUAGE_CODE == 'ar' %}
+     text-align : right;
+  
+   {% else %} 
+   text-align : left;
+   {% endif %}
+   }
+</style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-198467392-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-198467392-1');
+  </script>
+</head>
+
+
+<body > 
+  <!-- ======= Top Bar ======= -->
+  {%for header in headers%}
+  <section id="topbar" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:{{header.email}}">{{header.email}}</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{header.phone}}</span></i>
+      </div>
+      <div class="social-links d-none d-md-flex align-items-center">
+        <a href="{{header.twitter_url}}" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="{{header.facebook_url}}" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="{{header.instagram_url}}" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="{{header.linkedin_url}}" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+        <a href="{{header.tiktok_url}}" class="tiktok"><i class="bi bi-tiktok"></i></i></a>
+
+      </div>
+    </div>
+  </section>
+  {%endfor%}
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+      <div class="logo">
+        {%for header in headers %}
+        <h1 class="text-light"><a href="{% url 'home' %}">
+
+          {%if header.navlogo %}   <img src="{{header.navlogo.url}}" class="img-fluid" alt=""> {%endif%} 
+
+
+        </a></h1>
+        {% endfor %}
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a class="active" href="{% url 'home' %}">{%trans 'Home'%}</a></li>
+          <li><a href="{% url 'about' %}"> {%trans 'About' %}</a></li>
+          <li><a href="{% url 'portofolio'%}">{%trans 'Portfolio'%}</a></li>
+          <li><a href="{% url 'blog' %}">{%trans 'Blog'%}</a></li>
+          <li class="dropdown"><a href="#services"><span>{%trans 'Services'%}</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              {%for category in category %}
+              <li><a href="{% url 'category' category.slug %}">{{category.Category_name}}</a></li>
+             {%endfor%}
+            </ul>
+          </li>
+          <li><a href="{%url 'contact'%}">Contact</a></li>
+          {% get_current_language as CURRENT_LANGUAGE %}
+          {% get_available_languages as AVAILABLE_LANGUAGES %}
+          {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+          {% for language in languages %}
+              <li>
+                <a href="/{{ language.code }}/"
+                  {% if language.code == CURRENT_LANGUAGE %} class="active"{% endif %}>
+                  {{ language.name_local }}
+                </a>
+              </li>
+           {% endfor %}
+        </ul>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+{% block content %}
+
+{% endblock %}
+ <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row" >
+          {% for header in headers %}
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <a href="{% url 'home' %}">
+                {%if header.footer_img %}
+                <img src="{{header.footer_img.url}}" alt="" >
+              {%endif%}</a>
+              <p>
+                {{header.footer_address1}}<br>
+                {{header.footer_address2}}<br><br>
+                <strong>{%trans 'Phone' %} :</strong>{{header.phone}}<br>
+                <strong>{%trans 'Email' %} :</strong> {{header.email}}<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="{{header.twitter_url}}" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="{{header.facebook_url}}" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="{{header.instagram_url}}" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="{{header.linkedin_url}}" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>{%trans 'Useful Links'%}</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">{%trans 'Home'%}</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">{%trans 'About' %}</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">{%trans 'Services' %}</a></li>
+             
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>{%trans 'Our Services'%}</h4>
+            {% for category in category %}
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'category' category.slug  %}">{{category.Category_name}}</a></li>
+            </ul>
+            {% endfor %}
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy;{%trans 'Copyright'%}<strong><span>{{header.company_name}}</span></strong>. {%trans 'All Rights Reserved'%}
+      </div>
+      <div class="credits">
+        {%trans 'Designed by'%}  <a href="https://nafazz.com/"> {%trans 'Nafaz'%}</a>
+     
+      </div>
+    </div>
+    {% endfor %}
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

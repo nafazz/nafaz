@@ -1,0 +1,202 @@
+{%  extends 'core/base.html' %}
+{% load static %}
+
+{% load i18n %}
+
+{% block content %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>{%trans 'About' %}</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">{%trans 'Home'%}</a></li>
+            <li>{%trans 'About' %}</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= About Us Section ======= -->
+    {%for i in abouts%}
+    <section id="about-us" class="about-us">
+      <div class="container">
+   
+        <section id="about" class="about">
+          <div class="container">
+    
+            <div class="row">
+              <div class="col-lg-6">
+                {%if i.about_image%}
+                <img src="{{i.about_image.url}}" class="img-fluid" alt="">
+             {%endif%}
+              </div>
+              <div class="col-lg-6 pt-4 pt-lg-0">
+                <h3>{{i.header}}</h3>
+                <p>
+                {{i.body|safe}}
+                </p>
+              </div>
+            </div>
+    
+          </div>
+        </section><!-- End About Section -->
+       
+        <!-- ======= Counts Section ======= -->
+        <section id="counts" class="counts">
+          <div class="container">
+    
+            <div class="row counters">
+    
+              <div class="col-lg-3 col-6 text-center">
+                <span data-purecounter-start="0" data-purecounter-end="{{i.number_of_client}}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>{%trans 'Happy Clients' %}</p>
+              </div>
+    
+              <div class="col-lg-3 col-6 text-center">
+                <span data-purecounter-start="0" data-purecounter-end="{{i.number_of_project}}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>{%trans 'Projects' %}</p>
+              </div>
+    
+              <div class="col-lg-3 col-6 text-center">
+                <span data-purecounter-start="0" data-purecounter-end="{{i.Years_of_experience}}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>{%trans 'Years of experience' %}</p>
+              </div>
+    
+              <div class="col-lg-3 col-6 text-center">
+                <span data-purecounter-start="0" data-purecounter-end="{{i.number_of_workers}}" data-purecounter-duration="1" class="purecounter"></span>
+                <p>{%trans 'Hard Workers' %}</p>
+              </div>
+    
+            </div>
+    
+          </div>
+        </section><!-- End Counts Section -->
+        <section id="details" class="details">
+          <div class="container">
+             {%for i in whyuss%}
+            <div class="row content" id='about'>
+              <div class="col-md-4" data-aos="fade-right">
+                <img src="{{i.img.url}}" class="img-fluid" alt="">
+              </div>
+              <div class="col-md-8 pt-4" data-aos="fade-up">
+               
+                <h3>{{i.title}}</h3>
+                <p class="fst-italic">
+                {{i.body|safe}}
+                </p>
+              </div>
+            </div>
+      {%endfor %}
+      
+        
+          </div>
+        </section><!-- End Details Section --> 
+        <!-- ======= Why Us Section ======= -->
+        <section id="why-us" class="why-us section-bg">
+          <div class="container">
+    
+            <div class="row">
+              <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="box">
+                 
+                    <h5 >{%trans 'Our Mission'%}</h5>
+                    <p >{{i.mission|safe}}</p>
+                  </div>
+                </div>
+           
+              <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="box">
+                 
+                    <h5 >{%trans 'Our Plan'%}</h5>
+                    <p >{{i.plan|safe}}</p>
+                 
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="box">
+                 
+                    <h5 >{%trans 'Our Vision'%}</h5>
+                    <p >{{i.vission}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+        </section><!-- End Why Us Section -->
+    
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+    {%endfor%}
+
+    <section id="team" class="team">
+      <div class="container">
+        {% for i in team_intro %}
+        <div class="section-title">
+          <span>{{i.title}}</span>
+          <p>{{i.about_team|safe}}</p>
+      
+        </div>
+        {% endfor %}
+  
+        <div class="row">
+          {%for i in team%}
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in">
+            <div class="member">
+
+            {% if i.profile_img %}
+              <img src="{{ i.profile_img.url }}" alt="">
+            {% endif %}
+            <h4>{{i.name}}</h4>
+            <span>{{i.position}}</span>
+              
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    
+      </div>
+    </section><!-- End Team Section -->
+  
+
+    <!-- ======= Our Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container">
+ 
+        <div class="section-title" data-aos="fade-up">
+          {%for i in client_intro %}
+          <h2>{{i.header}}</h2>
+          <p>{{i.body|safe}}</p>
+        </div>
+         {%endfor%}
+        <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
+         {%for i in client%}
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              {%if i.img%}
+              <img src="{{i.img.url}}" class="img-fluid" alt="">
+              {%endif%}
+            </div>
+          </div>
+         {%endfor%}
+       
+
+        </div>
+
+      </div>
+    </section><!-- End Our Clients Section -->
+
+  </main><!-- End #main -->
+
+ 
+ {% endblock %}

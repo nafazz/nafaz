@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %} {% load static %} {% load i18n %} 
+{% block content %}
+{%if category_details.Category_image_slider%}
+<section
+  id="hero-category"
+  class="d-flex flex-column justify-content-center align-items-center"
+  style="background: url({{category_details.Category_image_slider.url}})center center;"
+>
+
+  <div class="container text-center text-md-left" data-aos="fade-up">
+    <h1>{{category_details.Category_name}}</h1>
+    <h4>{{category_details.Category_description|safe}}</h4>
+  </div>
+</section>
+<!-- End Hero -->
+{%endif%}
+<main id="main">
+  <!-- ======= Services Section ======= -->
+  <!-- ======= Features Section ======= -->
+  <section id="features" class="features section-bg">
+    <div class="container">
+      <div class="section-title">
+        <h2 data-aos="fade-in">{{category_details.Category_name}}</h2>
+        <p data-aos="fade-in">{{category_details.Category_description|safe}}</p>
+      </div>
+
+      {%for i in service%}
+      <div class="row content">
+        <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+          {%if i.Service_image %}
+          <img src="{{i.Service_image.url}}" class="img-fluid" alt="" />
+          {%endif%}
+        </div>
+        <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+          <h3>{{i.service_name}}</h3>
+          <p>{{i.service_intro|safe}}</p>
+          <div class="more"><a href="{% url 'service_details' i.slug %}"><i class="bi bi-arrow-right"></i>{%trans 'More'%} </a></div>
+
+        </div>
+
+
+      </div>
+
+      {%endfor%}
+    </div>
+  </section>
+  <!-- End Features Section -->
+</main>
+{% endblock %}

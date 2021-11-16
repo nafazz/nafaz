@@ -1,0 +1,69 @@
+{%  extends 'core/base.html' %}
+{% load static %}
+
+{% load i18n %}
+
+{% block content %}
+<main id="main">
+
+    <!-- ======= Our Portfolio Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>{%trans 'Our Portfolio'%}</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">{%trans 'Home'%}</a></li>
+            <li>{%trans 'Our Portfolio'%}</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Our Portfolio Section -->
+
+    <!-- ======= Portfolio Section ======= -->
+     <!-- ======= Portfolio Section ======= -->
+     <section id="portfolio-new" class="portfolio-new">
+      <div class="container">
+
+        {%for i in portfolio%}
+        <div class="section-title">
+          <h2>{{i.header}}</h2>
+          <p>{{i.body|safe}}</p>
+        </div>
+{%endfor%}
+<ul id="portfolio-flters" class="d-flex justify-content-end" data-aos="fade-up">
+  <li data-filter="*" class="filter-active"> All </li>
+  {% for i in category %}
+  <li data-filter=".filter-{{i.Category_name}}"> {{i.Category_name}} </li>
+</ul>
+
+      
+
+<div class="row portfolio-container" data-aos="fade-up">      
+      {% for Project in project %}
+      <div class="col-lg-4 col-md-6 portfolio-item filter-{{Project.category}}">
+        <div class="portfolio-img">
+          {%if Project.img_1 %}
+          <img src={{Project.img_1.url}} class="img-fluid" alt="">
+        {%endif%}</div>
+            <div class="portfolio-info">
+              <h4>{{Project.project_name}}</h4>
+              <p>{{Project.project_details|safe}}</p>
+              {%if Project.img_2 %}
+              <a href="{{project.img_2.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{Project.project_name}}"><i class="bx bx-plus"></i></a>
+              {%endif%}
+              <a href="{{Project.project_url}}" class="details-link" title="{{Project.project_name}}"><i class="bx bx-link"></i></a>
+            </div>
+            {%endfor%}
+          </div>
+        
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+  </main><!-- End #main -->
+
+  {% endfor %}
+ {% endblock %}

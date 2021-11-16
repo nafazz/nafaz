@@ -1,0 +1,240 @@
+{% extends 'core/base.html' %}
+ {% load static %} 
+ {% load i18n %}
+ {% block content %}
+
+<!-- ======= Hero Section ======= -->
+{%for header in headers %}
+{%if header.slider_img%}
+<section id="hero"
+style="background: url({{header.slider_img.url}})top center;"
+>
+  <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
+   
+    <h1>{{header.slider_header}}</h1>
+    <h2>{{header.slider_text}}</h2>
+    <div class="d-flex">
+      <a href="#about" class="btn-get-started scrollto">{%trans 'Get Started'%}</a>
+      <a
+        href="{{header.videofile.url}}" 
+   
+        target="_self"
+        class="glightbox btn-watch-video"
+        ><i class="bi bi-play-circle"></i><span>{%trans 'Watch Video'%}</span></a
+      >
+    </div>
+   
+  </div>
+</section>
+{%endif%}
+{%endfor%}
+<!-- End Hero -->
+
+
+  <!-- ======= About Section ======= -->
+  <section id="details" class="details">
+    <div class="container">
+{%for i in abouts%}
+      <div class="row content" id='about'>
+        <div class="col-md-4" data-aos="fade-right">
+          <img src="{{i.about_image.url}}" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-8 pt-4" data-aos="fade-up">
+         
+          <h3>{{i.header}}</h3>
+          <p class="fst-italic">
+          {{i.intro|safe}}
+          </p>
+          <a href="{% url 'about' %}" class="btn-learn-more">{%trans 'Learn More'%}</a>
+        </div>
+      </div>
+{%endfor %}
+
+  
+    </div>
+  </section><!-- End Details Section -->
+  {%for i in service_intro%}
+  <section id="Category" class="Category" style="background: url({{i.Service_intro_image.url}}) center center no-repeat;">
+    <div class="container">
+
+      <div class="row no-gutters" >
+      
+        <div class="content col-xl-5 d-flex align-items-stretch" data-aos="fade-right">
+          <div class="content">
+            <h3 >{{i.title}}</h3>
+            <p>
+             {{i.intro|safe}}
+            </p>
+          </div>
+        </div>
+       
+        <div class="col-xl-7 d-flex align-items-stretch" data-aos="fade-left">
+          <div class="icon-boxes d-flex flex-column justify-content-center">
+            <div class="row">
+              {%for i in category%}
+              <a href="{% url 'category' i.slug %}">
+              <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+                <i class="{{i.Category_icon}}"></i>
+                <h4>{{i.Category_name}}</h4>
+                <p>{{i.Category_description|safe}}</p>
+              </div>
+            </a>
+            {%endfor%}
+            </div>
+          </div><!-- End .content-->
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Category Section -->
+  {%endfor%}
+  <!-- ======= Services Section ======= -->
+
+
+
+ 
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+{%for i in portfolio%}
+        <div class="section-title">
+          <h2>{{i.header}}</h2>
+          <p>{{i.body|safe}}</p>
+        </div>
+{%endfor%}
+
+
+        <div class="row portfolio-container">
+         {% for i in project %}
+        
+          <div class="col-lg-4 col-md-6 portfolio-item filter">
+         
+            <div class="portfolio-wrap">
+              {%if i.img_1 %}
+              <img src="{{i.img_1.url}}" class="img-fluid" alt="">
+              {%endif%}
+              <div class="portfolio-info">
+                <h4>{{i.project_name}}</h4>
+                <span>{{i.project_client}}</span>
+                <p>{{i.project_details|safe}}</p>
+                <div class="portfolio-links">
+                
+                  <a href="{{i.project_url}}" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+      
+      
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+  <!-- ======= Cta Section ======= -->
+  <section id="cta" class="cta">
+    <div class="container" data-aos="zoom-in">
+      {% for i in ctss %}
+      <div class="text-center">
+        <h3>{{i.title}}</h3>
+        <p>{{i.text|safe}}</p>
+        <a class="cta-btn" href="tel:{{i.phone}}">{{i.call_icon}}</a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  
+
+    <section id="blog" class="blog">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="section-title" data-aos="fade-right">
+              {%for i in blog_intro%}
+              <div class="content">
+                <h3 >{{i.header}}</h3>
+                <p>
+                 {{i.body|safe}}
+                </p>
+              </div>
+              {%endfor%}
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              {%for i in blog%}
+              <div class="col-lg-6">
+                <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                  <div class="pic">
+                    {%if i.img%}<img src="{{i.img.url}}" class="img-fluid" alt="">
+                  {%endif%}</div>
+                  <div class="member-info">
+                    <h4>{{i.header}}</h4>
+                  
+                  </div>
+                </div>
+              </div>
+              {%endfor%}
+             
+            
+
+          
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End blog Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+
+      {%for i in contact_intro%}
+      <h2>{{i.header}}</h2>
+          <p>
+            {{i.body|safe}}
+          </p>
+      </div>
+      {%endfor%}
+      {%for header in headers %}
+      <div class="row" data-aos="fade-up">
+        <div class="col-lg-4 col-md-6">
+          <div class="info-box mb-4">
+            <i class="bx bx-map"></i>
+            <h3>{%trans 'Address'%}</h3>
+            <p>{{header.footer_address1}}
+              <br>{{header.footer_address2}}</p>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="info-box  mb-4">
+            <i class="bx bx-envelope"></i>
+            <h3>{%trans 'Email'%}</h3>
+            <p>{{header.email}}</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="info-box  mb-4">
+            <i class="bx bx-phone"></i>
+            <h3>{%trans 'Call Us'%}</h3>
+            <p>{{header.phone}}</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="row" data-aos="fade-up">
+        <div class="col-lg-12 ">
+          <!--{{m|safe}}-->
+          <iframe class="mb-4 mb-lg-0" src="{{header.googel_map_url}}" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+        </div>
+        {% endfor %}
+      </div>
+     
+  </section><!-- End Contact Section -->
+
+{% endblock %}
