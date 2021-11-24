@@ -78,14 +78,14 @@
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
         <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:{{header.email}}">{{header.email}}</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{header.phone}}</span></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><a href=" tel:{{header.phone}}"><span>{{header.phone}}</span></a></i>
       </div>
       <div class="social-links d-none d-md-flex align-items-center">
-        <a href="{{header.twitter_url}}" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="{{header.facebook_url}}" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="{{header.instagram_url}}" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="{{header.linkedin_url}}" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-        <a href="{{header.tiktok_url}}" class="tiktok"><i class="bi bi-tiktok"></i></i></a>
+                <a href="{{header.twitter_url}}" target="_blank" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="{{header.facebook_url}}" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="{{header.instagram_url}}" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="{{header.linkedin_url}}" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="{{header.tiktok_url}}" target="_blank" class="tiktok"><i class="bi bi-tiktok"></i></a>
 
       </div>
     </div>
@@ -157,14 +157,16 @@
               <p>
                 {{header.footer_address1}}<br>
                 {{header.footer_address2}}<br><br>
-                <strong>{%trans 'Phone' %} :</strong>{{header.phone}}<br>
-                <strong>{%trans 'Email' %} :</strong> {{header.email}}<br>
-              </p>
+               
+           <strong>{%trans 'Phone' %} :</strong><a href=" tel:{{header.phone}}"><span>{{header.phone}}</span></a><br>
+                <strong>{%trans 'Email' %} :</strong> <a href="mailto:{{header.email}}">{{header.email}}</a><br>             
+ </p>
               <div class="social-links mt-3">
                 <a href="{{header.twitter_url}}" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="{{header.facebook_url}}" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="{{header.instagram_url}}" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
                 <a href="{{header.linkedin_url}}" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="{{header.tiktok_url}}" target="_blank" class="tiktok"><i class="bx bxl-tiktok"></i></a>
               </div>
             </div>
           </div>
