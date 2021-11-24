@@ -215,14 +215,15 @@ style="background: url({{header.slider_img.url}})top center;"
           <div class="info-box  mb-4">
             <i class="bx bx-envelope"></i>
             <h3>{%trans 'Email'%}</h3>
-            <p>{{header.email}}</p>
+       <p><a href="mailto:{{header.email}}">{{header.email}}</a></p>           
           </div>
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="info-box  mb-4">
             <i class="bx bx-phone"></i>
             <h3>{%trans 'Call Us'%}</h3>
-            <p>{{header.phone}}</p>
+        <p><a href=" tel:{{header.phone}}"><span>{{header.phone}}</span></a></p>
+           
           </div>
         </div>
 
