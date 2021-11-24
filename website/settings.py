@@ -1,3 +1,4 @@
+
 """
 Django settings for website project.
 
@@ -27,8 +28,7 @@ SECRET_KEY = 'django-insecure-s%o$q_cnkba9)*#ohfyjrr3sufa%@@la7o@ho)x+*%*_*a(!jz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['35.177.177.172',  'localhost']
 
 # Application definition
 
@@ -87,14 +87,16 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'nafaz',
+        'USER': 'dbuser',
+        'PASSWORD': 'nafaz@12',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -134,8 +136,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mairshad238@gmail.com'
-EMAIL_HOST_PASSWORD = 'aaewhztqqbaafwzh'
+EMAIL_HOST_USER = 'nafazts@gmail.com'
+EMAIL_HOST_PASSWORD = 'N@f@z2021'
 EMAIL_USE_TLS = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
